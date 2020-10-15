@@ -1,0 +1,31 @@
+{
+  "name": "escjs",
+  "version": "1.0.0",
+  "description": "A discord bot for the Escension server, written in JavaScript",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Buntry/escjs.git"
+  },
+  "keywords": [
+    "discord",
+    "bot",
+    "moderation"
+  ],
+  "author": "Parker Griep",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Buntry/escjs/issues"
+  },
+  "homepage": "https://github.com/Buntry/escjs#readme",
+  "devDependencies": {
+    "eslint": "^7.11.0"
+  },
+  "dependencies": {
+    "discord.js": "^12.3.1"
+  }
+}
