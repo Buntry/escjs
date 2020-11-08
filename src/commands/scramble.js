@@ -8,7 +8,10 @@ const REASONING = 'Scrambling nicknames server-wide'
 
 export default class Scramble extends Command {
   constructor() {
-    super({ commandName: 'scramble' })
+    super({
+      commandName: 'scramble',
+      helpMessage: 'scrambles the nicknames of most the users in the server'
+    })
   }
 
   async execute(msg) {

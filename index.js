@@ -1,6 +1,6 @@
 import Discord from 'discord.js'
 import dotenv from 'dotenv'
-import cmds from "./src/commands/cmds.js";
+import cmds from "./src/commands/cmds.js"
 
 dotenv.config()
 const client = new Discord.Client()

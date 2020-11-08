@@ -1,6 +1,7 @@
 export default class Command {
-  constructor({ commandName }) {
+  constructor({ commandName, helpMessage }) {
     this.commandName = commandName
+    this.helpMessage = helpMessage
   }
 
   async execute (msg) {
