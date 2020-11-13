@@ -4,6 +4,7 @@ import Scramble from "./scramble.js";
 import Help from "./help.js";
 import Anon from "./anon/anon.js";
 import Uptime from "./uptime.js";
+import Bruh from "./bruh.js";
 
 export default [
   new Reset(),
@@ -11,5 +12,6 @@ export default [
   new Scramble(),
   new Help(),
   new Uptime(),
-  new Anon()
+  new Anon(),
+  new Bruh()
 ]

@@ -105,3 +105,8 @@ dist
 
 # TernJS port file
 .tern-port
+
+# Resources that are not zips
+resources/**/*.mp3
+!resources/**/*.zip
+

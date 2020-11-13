@@ -30,10 +30,14 @@
     "eslint": "^7.11.0"
   },
   "dependencies": {
+    "@discordjs/opus": "^0.3.3",
     "dayjs": "^1.9.5",
+    "directory-tree": "^2.2.5",
     "discord.js": "^12.3.1",
     "dotenv": "^8.2.0",
+    "ffmpeg-static": "^3.0.0",
     "firebase": "^8.0.1",
-    "node": "^15.0.1"
+    "node": "^15.0.1",
+    "unzipper": "^0.10.11"
   }
 }
