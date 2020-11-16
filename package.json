@@ -9,7 +9,8 @@
   },
   "scripts": {
     "start": "node index.js",
-    "lint": "eslint --fix index.js src/**"
+    "lint": "eslint --fix index.js src/**",
+    "watch": "nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -27,17 +28,25 @@
   },
   "homepage": "https://github.com/Buntry/escjs#readme",
   "devDependencies": {
-    "eslint": "^7.11.0"
+    "eslint": "^7.11.0",
+    "nodemon": "^2.0.6"
   },
   "dependencies": {
     "@discordjs/opus": "^0.3.3",
     "dayjs": "^1.9.5",
-    "directory-tree": "^2.2.5",
     "discord.js": "^12.3.1",
     "dotenv": "^8.2.0",
     "ffmpeg-static": "^3.0.0",
     "firebase": "^8.0.1",
+    "lodash": "^4.17.20",
     "node": "^15.0.1",
-    "unzipper": "^0.10.11"
+    "spotify-uri": "^2.1.0",
+    "spotify-web-api-node": "^5.0.0",
+    "unzipper": "^0.10.11",
+    "youtube-sr": "^2.0.1",
+    "ytdl-core": "^4.0.5"
+  },
+  "nodemonConfig": {
+    "delay": "2500"
   }
 }

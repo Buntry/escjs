@@ -1,12 +1,14 @@
 import Command from "../models/Command.js"
 import prisons from '../data/prisons.js'
+import Category from '../data/category.js'
 import randomElement from "../lib/randomElement.js"
 
 export default class Punish extends Command {
   constructor() {
     super({
       commandName: 'punish',
-      helpMessage: 'sends a user to the pog prison'
+      helpMessage: 'sends a user to the pog prison',
+      category: Category.MODERATION
     })
   }
 
