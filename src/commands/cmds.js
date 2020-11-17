@@ -6,6 +6,7 @@ import Anon from "./anon/anon.js";
 import Uptime from "./uptime.js";
 import Bruh from "./bruh.js";
 import Pog from "./pog.js";
+import Punish from "./punish.js";
 
 export default [
   new Reset(),
@@ -15,5 +16,6 @@ export default [
   new Uptime(),
   new Anon(),
   new Bruh(),
-  new Pog()
+  new Pog(),
+  new Punish()
 ]
