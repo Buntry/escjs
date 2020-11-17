@@ -5,6 +5,7 @@ import Help from "./help.js";
 import Anon from "./anon/anon.js";
 import Uptime from "./uptime.js";
 import Bruh from "./bruh.js";
+import Pog from "./pog.js";
 
 export default [
   new Reset(),
@@ -13,5 +14,6 @@ export default [
   new Help(),
   new Uptime(),
   new Anon(),
-  new Bruh()
+  new Bruh(),
+  new Pog()
 ]
