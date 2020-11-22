@@ -3,6 +3,7 @@ import ytsr from 'youtube-sr'
 import _ from 'lodash'
 import Song from '../models/Song.js'
 import shuffle from '../lib/shuffle.js'
+import sleep from '../lib/sleep.js'
 import spotify from '../config/spotify.js'
 
 class MusicManager {
@@ -14,6 +15,7 @@ class MusicManager {
     this.songQueue = [],
     this.playing = false
     this.repeating = false
+    this.playlistLoadDelay = 5000
   }
 
   async startPlaying(song) {
@@ -72,6 +74,8 @@ class MusicManager {
       return await this.getYTSong(query)
     } else if (spotify.isTrack(query)) {
       return await this.getSpotifySong(query)
+    } else if (spotify.isPlaylist(query)) {
+      return await this.loadSpotifyPlaylist(query)
     }
 
     return await this.searchYTForSong(query)
@@ -104,10 +108,35 @@ class MusicManager {
   }
 
   async getSpotifySong(query) {
-    const track = await spotify.getTrack(spotify.getTrackId(query))
+    const track = await spotify.getTrack(spotify.getSpotifyId(query))
     const title = track?.body?.name
     const artistName = track?.body?.artists?.[0]?.name
     return await this.searchYTForSong(`${title} by ${artistName}`, title, artistName)
+  }
+
+  async loadSpotifyPlaylist(query) {
+    const playlistTracks = await spotify.getPlaylistTracks(spotify.getSpotifyId(query))
+    
+    const trackToSong = async (trackData) => {
+      const title = trackData?.track?.name
+      const artist = trackData?.track?.artists?.[0]?.name
+      return await this.searchYTForSong(`${title} by ${artist}`, title, artist)
+    }
+
+    _.chain(playlistTracks)
+      .slice(1)
+      .chunk(20)
+      .reduce((queuePromise, tracks) => 
+        queuePromise.then(() => 
+          Promise.all(tracks.map(track => 
+            trackToSong(track).then(song =>
+              this.songQueue.push(song))))
+            .then(() => sleep(this.playlistLoadDelay)))
+      , Promise.resolve())
+      .value()
+      .then(() => this?.textChannel?.send(`Playlist of ${playlistTracks?.length} loaded`))
+  
+    return await trackToSong(playlistTracks?.[0])
   }
 }
 

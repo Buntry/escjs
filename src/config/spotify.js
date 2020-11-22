@@ -20,24 +20,45 @@ const refreshToken = async () => {
     : Promise.resolve()
 }
 
-export const isTrack = (query) => {
+const isType = (query, type) => {
   try {
-    const parsed = spotifyUri.parse(query)
-    return parsed?.type === 'track'
+    return spotifyUri.parse(query)?.type === type
   } catch (err) {
     return false
   }
 }
 
-export const getTrackId = (query) => {
-  const parsed = spotifyUri.parse(query)
-  return parsed?.id
-}
+export const isTrack = (query) => isType(query, 'track')
+export const isPlaylist = (query) => isType(query, 'playlist')
+
+export const getSpotifyId = (query) => spotifyUri.parse(query)?.id
 
 export const getTrack = async (trackId) => {
   return refreshToken().then(() => spotifyApi.getTrack(trackId))
 }
 
+export const getPlaylist = async (playlistId) => {
+  return refreshToken().then(() => spotifyApi.getPlaylist(playlistId))
+}
+
+export const getPlaylistTracks = async (playlistId) => {
+  await refreshToken()
+
+  const tracks = []
+  let total = 0
+  let offset = 0
+
+  do {
+    const playlistTracks = await spotifyApi.getPlaylistTracks(playlistId, { offset })
+    playlistTracks?.body?.items?.forEach(trackInfo => tracks.push(trackInfo))
+    
+    total = playlistTracks?.body?.total
+    offset += playlistTracks?.body?.limit
+  } while (total > offset)
+
+  return tracks
+}
+
 export default {
-  isTrack, getTrackId, getTrack
+  isTrack, isPlaylist, getSpotifyId, getTrack, getPlaylist, getPlaylistTracks
 }
