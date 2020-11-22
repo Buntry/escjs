@@ -7,3 +7,7 @@ export const IN_GUILD_VC = msg => ({...IN_GUILD(msg), ...IN_VC(msg)})
 export const HAS_MUSIC_MANAGER = msg => ({...IN_GUILD_VC(msg), 
   'The bot must be connected in order to use this command': getMusicManager(msg, {createIfNotFound: false})
 })
+
+export const NO_MUSIC_MANAGER = msg => ({...IN_GUILD_VC(msg),
+  'The bot must be disconnected in order to use this command': !getMusicManager(msg, {createIfNotFound: false})
+})

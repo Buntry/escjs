@@ -3,6 +3,8 @@ import unzipper from 'unzipper'
 import Command from "../models/Command.js"
 import randomElement from "../lib/randomElement.js"
 import Category from '../data/category.js'
+import checkPreds from '../lib/checkPreds.js'
+import { NO_MUSIC_MANAGER } from '../lib/discordPreds.js'
 
 export default class RandomSoundCommand extends Command {
   constructor({commandName, helpMessage, soundPath, fileName }) {
@@ -14,6 +16,9 @@ export default class RandomSoundCommand extends Command {
   }
 
   async execute(msg) {
+    const errMsg = checkPreds(NO_MUSIC_MANAGER(msg))
+    if (errMsg) return msg.reply(errMsg)
+  
     const conn = msg?.member?.voice?.channel?.join()
       ?.then(connection => {
         fs.readdir(this.soundPath, (err, files) => {
