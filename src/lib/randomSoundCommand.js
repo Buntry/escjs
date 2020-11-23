@@ -1,10 +1,13 @@
 import fs from 'fs'
 import unzipper from 'unzipper'
 import Command from "../models/Command.js"
-import randomElement from "../lib/randomElement.js"
+import randomElement from "./randomElement.js"
 import Category from '../data/category.js'
-import checkPreds from '../lib/checkPreds.js'
-import { NO_MUSIC_MANAGER } from '../lib/discordPreds.js'
+import checkPreds from './checkPreds.js'
+import { NO_MUSIC_MANAGER } from './discordPreds.js'
+import setupSoundBites from './setupSoundbiteCommands.js'
+
+setupSoundBites()
 
 export default class RandomSoundCommand extends Command {
   constructor({commandName, helpMessage, soundPath, fileName }) {
