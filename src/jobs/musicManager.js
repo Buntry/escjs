@@ -11,8 +11,9 @@ class MusicManager {
     this.guildId = msg?.guild?.id
     this.textChannel = msg?.channel
     this.voiceChannel = msg?.member?.voice?.channel
-    this.connection = null,
-    this.songQueue = [],
+    this.connection = null
+    this.dispatcher = null
+    this.songQueue = []
     this.playing = false
     this.repeating = false
     this.playlistLoadDelay = 5000
@@ -25,7 +26,7 @@ class MusicManager {
     }
 
     this.connection = this.connection || await this.voiceChannel?.join()
-    this.connection?.play(song.resource())
+    this.dispatcher = this.connection?.play(song.resource())
       .on('finish', () => {
         const playedSong = this.songQueue.shift()
         if (this.repeating) this.songQueue.push(playedSong)
@@ -33,12 +34,17 @@ class MusicManager {
       }).on('error', console.log)
   }
 
-  async addSong(query) {
+  async addSong(query, upNext=false) {
     const song = await this.getSongFromQuery(query)
     if (!song) 
       return this.textChannel?.send(`Could not find a resource from:\n${query}`)
 
-    this.songQueue.push(song)
+    if (upNext) {
+      this.songQueue.splice(1, 0, song)
+    } else {
+      this.songQueue.push(song)
+    }
+    
     this.sendAddedSongMsg(song)
     if (!this.playing) {
       this.startPlaying(song)
@@ -52,9 +58,9 @@ class MusicManager {
       this.textChannel?.send(`${msg?.author} stopped the tunes 🎶`)
   }
 
-  async pause() { this.connection?.dispatcher?.paused || this.connection?.dispatcher?.pause() }
-  async resume() { !this.connection?.dispatcher?.paused || this.connection?.dispatcher?.resume() }
-  async skip() { this.connection?.dispatcher?.end() }
+  async pause() { this.dispatcher?.pause(true) }
+  async resume() { this.dispatcher?.resume() }
+  async skip() { this.dispatcher?.end() }
   async repeat() { return this.repeating = !this.repeating }
   async clear() { this.songQueue = this.songQueue.slice(0, 1) }
   async shuffle() {
@@ -88,12 +94,13 @@ class MusicManager {
 
   async getYTSong(query, title=null, artist=null) {
     const link = _.split(query, /\s+/, 1)?.[0]
-    const info = await ytdl.getInfo(link)
+    const info = await ytdl.getBasicInfo(link)
     const videoDetails = info?.videoDetails
     return new Song(
       title || videoDetails?.title, 
       artist || videoDetails?.ownerChannelName, 
-      () => ytdl(link), 
+      () => ytdl(link),
+      link,
       info)
   }
 
@@ -127,11 +134,11 @@ class MusicManager {
       .slice(1)
       .chunk(20)
       .reduce((queuePromise, tracks) => 
-        queuePromise.then(() => 
-          Promise.all(tracks.map(track => 
-            trackToSong(track).then(song =>
-              this.songQueue.push(song))))
-            .then(() => sleep(this.playlistLoadDelay)))
+        queuePromise.then(() => sleep(this.playlistLoadDelay))
+          .then(() => 
+            Promise.all(tracks.map(track => 
+              trackToSong(track).then(song =>
+                this.songQueue.push(song)))))
       , Promise.resolve())
       .value()
       .then(() => this?.textChannel?.send(`Playlist of ${playlistTracks?.length} loaded`))

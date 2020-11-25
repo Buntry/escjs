@@ -3,11 +3,12 @@ export default (msg, collectorConfig, reactionControls) => {
   emojis.map(emoji => msg?.guild?.emojis?.resolveID(emoji))
     .map(emoji => msg?.react(emoji))
     
-  const userControllingViaReactiosn = (reaction, user) => 
+  const userControllingViaReactions = (reaction, user) => 
     !user?.bot && emojis.includes(reaction?.emoji?.name)
-  const reactionCollector = msg?.createReactionCollector(userControllingViaReactiosn, collectorConfig)
+  const reactionCollector = msg?.createReactionCollector(userControllingViaReactions, collectorConfig)
   reactionCollector?.on('collect', (reaction, user) => {
+    reactionCollector?.resetTimer()
     reactionControls[reaction?.emoji?.name]({reactionCollector, msg, reaction, user})
     reaction?.users?.remove(user)
-  })
+  })?.on('end', () => msg?.reactions?.removeAll())
 }
