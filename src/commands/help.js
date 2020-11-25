@@ -13,21 +13,19 @@ export default class Help extends Command {
   }
 
   async execute(msg) {   
-    const helpTexts = _.chain(Array.from(cmds.values()))
+    const helpEmbeds = _.chain(Array.from(cmds.values()))
       .groupBy('category')
-      .map((categoryCmds, categoryName) => `
-        __${categoryName}__
-        ${_.map(categoryCmds, cmd => 
-    `\t**${prefix}${cmd.usage}**:\t${cmd.helpMessage}`).join('\n')}`)
+      .map((categoryCmds, categoryName) => new MessageEmbed()
+        .setTitle(`__${categoryName}__`)
+        .setColor(0xff4500)
+        .setDescription(_.map(categoryCmds, cmd => 
+          `\t**${prefix}${cmd.usage}**:\t${cmd.helpMessage}`).join('\n')))
       .value()
 
     msg?.author?.createDM().then(async channel => {
-      const embed = new MessageEmbed()
-        .setTitle('COMMANDS:')
-        .setColor(0xff4500)
-        .setDescription(helpTexts.join('\n'))
-      await channel?.send(embed)
-      msg?.author?.deleteDM()
+      _.reduce(helpEmbeds, (promise, helpEmbed) => 
+        promise.then(() => channel?.send(helpEmbed)), Promise.resolve())
+        .then(() => msg?.author?.deleteDM())
     })  
   }
 }
