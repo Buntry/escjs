@@ -6,7 +6,7 @@ import shuffle from '../lib/shuffle.js'
 import sleep from '../lib/sleep.js'
 import spotify from '../config/spotify.js'
 
-class MusicManager {
+export default class MusicManager {
   constructor(msg) {
     this.guildId = msg?.guild?.id
     this.textChannel = msg?.channel
