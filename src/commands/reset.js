@@ -9,7 +9,8 @@ export default class Reset extends Command {
   constructor() {
     super({
       commandName: 'reset',
-      helpMessage: 'resets the nicknames of most the members in the server'
+      helpMessage: 'resets the nicknames of most the members in the server',
+      hidden: true
     })
   }
 

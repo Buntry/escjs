@@ -5,7 +5,8 @@ export default class Trump extends Command {
   constructor() {
     super({
       commandName: 'trump',
-      helpMessage: 'get back a random trump quote'
+      helpMessage: 'get back a random trump quote',
+      hidden: true
     })
   }
 

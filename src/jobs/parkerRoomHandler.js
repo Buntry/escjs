@@ -24,7 +24,8 @@ export default class ParkerRoomHandler extends VoiceStateUpdateHandler {
     this.minuteThreshold = 10
   }
 
-  handle([oldState, newState]) {
+  handle(states) {
+    const newState = states?.[1]
     const now = dayjs()
     if (this.lastDone !== null && now.diff(this.lastDone, 'minute') < this.minuteThreshold)
       return

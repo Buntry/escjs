@@ -16,7 +16,7 @@ export default class MusicManager {
     this.songQueue = []
     this.playing = false
     this.repeating = false
-    this.playlistLoadDelay = 5000
+    this.playlistLoadDelay = 2500
   }
 
   async startPlaying(song) {
@@ -154,4 +154,9 @@ export const getMusicManager = (msg, { createIfNotFound } = { createIfNotFound: 
     guilds.set(guildId, new MusicManager(msg))
   }
   return guilds.get(guildId)
+}
+
+export const mapMusicManager = (msg, func) => {
+  const guildId = msg?.guild?.id
+  guilds.set(guildId, func(guilds.get(guildId)))
 }

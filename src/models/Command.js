@@ -8,7 +8,8 @@ export default class Command {
     clearance = Clearance.EVERYWHERE, 
     usage = commandName,
     argumentNames = [],
-    category = Category.GENERAL
+    category = Category.GENERAL,
+    hidden = false
   }) {
     this.commandName = commandName
     this.helpMessage = helpMessage
@@ -16,6 +17,7 @@ export default class Command {
     this.usage = usage
     this.argumentNames = argumentNames
     this.category = category
+    this.hidden = hidden
   }
 
   async execute (msg) {

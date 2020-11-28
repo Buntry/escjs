@@ -8,24 +8,33 @@ export default class Help extends Command {
   constructor() {
     super({
       commandName: 'help',
-      helpMessage: 'get a list of the possible commands'
+      helpMessage: 'get a list of the possible commands',
+      argumentNames: ['here']
     })
   }
 
-  async execute(msg) {   
+  async execute(msg, args) {   
     const helpEmbeds = _.chain(Array.from(cmds.values()))
       .groupBy('category')
       .map((categoryCmds, categoryName) => new MessageEmbed()
         .setTitle(`__${categoryName}__`)
         .setColor(0xff4500)
-        .setDescription(_.map(categoryCmds, cmd => 
-          `\t**${prefix}${cmd.usage}**:\t${cmd.helpMessage}`).join('\n')))
+        .setDescription(_.chain(categoryCmds)
+          .filter(cmd => !cmd.hidden)
+          .map(cmd => `\t**${prefix}${cmd.usage}**:\t${cmd.helpMessage}`)
+          .value()
+          .join('\n')))
       .value()
 
-    msg?.author?.createDM().then(async channel => {
-      _.reduce(helpEmbeds, (promise, helpEmbed) => 
-        promise.then(() => channel?.send(helpEmbed)), Promise.resolve())
-        .then(() => msg?.author?.deleteDM())
-    })  
+    const sendEmbeds = (channel) => _.reduce(helpEmbeds, (promise, helpEmbed) => 
+      promise.then(() => channel?.send(helpEmbed)), Promise.resolve())
+      
+
+    if (args?.here == 'here') {
+      sendEmbeds(msg?.channel)
+    } else {  
+      msg?.author?.createDM().then(sendEmbeds)
+        .then(() => msg?.author?.deleteDM()) 
+    }  
   }
 }

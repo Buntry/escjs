@@ -10,7 +10,8 @@ export default class Scramble extends Command {
   constructor() {
     super({
       commandName: 'scramble',
-      helpMessage: 'scrambles the nicknames of most the users in the server'
+      helpMessage: 'scrambles the nicknames of most the users in the server',
+      hidden: true
     })
   }
 

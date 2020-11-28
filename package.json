@@ -44,6 +44,7 @@
     "opusscript": "^0.0.7",
     "spotify-uri": "^2.1.0",
     "spotify-web-api-node": "^5.0.0",
+    "string-similarity": "^4.0.3",
     "unzipper": "^0.10.11",
     "youtube-playlist": "^1.0.4",
     "youtube-sr": "^2.0.1",
