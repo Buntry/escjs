@@ -31,3 +31,5 @@ function setupEventHandlers() {
 }
 
 client.login(process.env.DISCORD_CLIENT_TOKEN);
+
+export default client
