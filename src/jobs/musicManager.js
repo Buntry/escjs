@@ -118,7 +118,7 @@ export default class MusicManager {
     const track = await spotify.getTrack(spotify.getSpotifyId(query))
     const title = track?.body?.name
     const artistName = track?.body?.artists?.[0]?.name
-    return await this.searchYTForSong(`${title} by ${artistName}`, title, artistName)
+    return await this.searchYTForSong(`${title} by ${artistName} lyrics`, title, artistName)
   }
 
   async loadSpotifyPlaylist(query) {
