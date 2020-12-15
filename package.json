@@ -39,6 +39,7 @@
     "dotenv": "^8.2.0",
     "ffmpeg-static": "^3.0.0",
     "firebase": "^8.0.1",
+    "firebase-admin": "^9.4.2",
     "lodash": "^4.17.20",
     "node": "^15.0.1",
     "opusscript": "^0.0.7",

@@ -35,10 +35,10 @@ export default class GiveScredits extends Command {
     const amount = Math.abs(_.toInteger(_.toFinite(args.amount)))
 
     const currencyManager = new CurrencyManager()
-    const currencyError = await currencyManager.moveFunds(msg?.author?.id, recipient?.id, amount)
+    const currencyError = await currencyManager.moveFunds(msg?.author?.id, recipient?.id, amount, "give")
     if (currencyError) {
       return msg?.channel?.send(currencyError)
     }
-    msg?.channel?.send(`**${msg?.author}** transferred **${amount}** scredits 💰 to **${recipient}**`)
+    msg?.channel?.send(`**${msg?.author}** transferred **${amount}** esc credits 💰 to **${recipient}**`)
   }
 }

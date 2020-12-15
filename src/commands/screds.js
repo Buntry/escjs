@@ -6,7 +6,7 @@ export default class Screds extends Command {
   constructor() {
     super({
       commandName: 'screds',
-      helpMessage: 'checks the amount of Esc Credits you have',
+      helpMessage: 'checks the amount of esc credits you have',
       category: Category.CURRENCY
     })
   }
