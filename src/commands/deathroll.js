@@ -3,6 +3,7 @@ import Command from "../models/Command.js"
 import Category from '../data/category.js'
 import checkPreds from "../lib/checkPreds.js"
 import randomElement from "../lib/randomElement.js"
+import challengeMessage from "../lib/challengeMessage.js"
 import { MessageEmbed } from 'discord.js'
 import CurrencyManager from '../lib/currencyManager.js'
 
@@ -30,16 +31,8 @@ export default class Deathroll extends Command {
     }
 
     const amt = Math.floor(_.toNumber(args?.amount))
-    const challengeMsg = await msg?.channel?.send(`${msg?.author} is challenging anyone to a **deathroll**
-Click the ✅ button to accept the challenge.`)
-    const filter = (reaction, user) => !user?.bot &&
-        reaction?.emoji?.name === '✅' // && user?.id !== msg?.author?.id
-    challengeMsg?.react('✅')
-    const collector = challengeMsg?.createReactionCollector(filter, { time: 30000 })
-      .on('collect', (reaction, challenger) => {
-        this.beginChallenge(msg?.channel, msg?.author, challenger, amt)
-        collector?.stop()
-      }).on('end', () => challengeMsg?.reactions?.removeAll())
+    challengeMessage(msg, amt, "deathroll", 
+      (channel, author, challenger, amt) => this.beginChallenge(channel, author, challenger, amt))
   }
 
   roll(die) { return Math.floor(Math.random() * Math.floor(die)) + 1 }

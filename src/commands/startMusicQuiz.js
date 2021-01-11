@@ -10,7 +10,7 @@ export default class StartMusicQuiz extends Command {
   constructor() {
     super({
       commandName: 'start-quiz',
-      usage: 'start-quiz (number of rounds)',
+      usage: 'start-quiz #rounds',
       helpMessage: 'starts a quiz using the current music queue',
       category: Category.GAMES,
       argumentNames: ['numRounds']
