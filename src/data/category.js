@@ -3,5 +3,6 @@ export default {
   MUSIC: '🎶 Music 🎶',
   SOUNDBITES: '🔊 Sound Bites 🤬',
   MODERATION: '🚫 Moderation 🔨',
-  GAMES: '🎲 Games 🎮'
+  GAMES: '🎲 Games 🎮',
+  CURRENCY: '💰 Currency 💱'
 }
