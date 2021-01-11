@@ -8,7 +8,7 @@ const challengeMessage = async (msg, amt, gameName, beginChallenge) => {
 
   Click the ✅ button to accept the challenge.`)
   const filter = (reaction, user) => !user?.bot &&
-            reaction?.emoji?.name === '✅' //&& user?.id !== msg?.author?.id
+            reaction?.emoji?.name === '✅' && user?.id !== msg?.author?.id
   challengeMsg?.react('✅')
   const collector = challengeMsg?.createReactionCollector(filter, { time: 30000 })
     .on('collect', (reaction, challenger) => {
