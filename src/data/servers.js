@@ -1,4 +1,4 @@
-import Server from "../models/Server.js";
+import Server from "../models/Server.js"
 
 const servers = {
   '361291881059057664': new Server('361291881059057664', 'EscensionBots'),

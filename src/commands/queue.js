@@ -1,4 +1,3 @@
-import Command from "../models/Command.js"
 import Category from '../data/category.js'
 import checkPreds from "../lib/checkPreds.js"
 import { HAS_MUSIC_MANAGER } from '../lib/discordPreds.js'
@@ -11,10 +10,11 @@ import formatDuration from '../lib/formatDuration.js'
 import posModulo from '../lib/posModulo.js'
 import addReactionControls from '../lib/addReactionControls.js'
 import sleep from '../lib/sleep.js'
+import MusicCommand from "../models/MusicCommand.js"
 
 dayjs.extend(duration)
 
-export default class Queue extends Command {
+export default class Queue extends MusicCommand {
   constructor() {
     super({
       commandName: 'queue',

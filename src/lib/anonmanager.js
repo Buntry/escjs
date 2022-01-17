@@ -1,5 +1,5 @@
 import crypto from 'crypto'
-import dayjs from "dayjs";
+import dayjs from "dayjs"
 
 // In-memory user-id / hexcode map
 export const DYNAMIC_UID_MAP = new Map()

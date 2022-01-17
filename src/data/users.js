@@ -1,4 +1,4 @@
-import User from "../models/User.js";
+import User from "../models/User.js"
 
 const users = {
   '157303237601394689': new User('157303237601394689', 'Kevin'),

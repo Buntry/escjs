@@ -1,10 +1,10 @@
-import Command from "../models/Command.js"
 import Category from '../data/category.js'
 import CurrencyManager from "../lib/currencyManager.js"
 import prkr from "../prkr.ml/client.js"
 import randomElement from "../lib/randomElement.js"
+import GameCommand from "../models/GameCommand.js"
 
-export default class Redeem extends Command {
+export default class Redeem extends GameCommand {
   constructor() {
     super({
       commandName: 'redeem',

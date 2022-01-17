@@ -1,13 +1,13 @@
 import _ from 'lodash'
-import Command from "../models/Command.js"
 import Category from '../data/category.js'
 import checkPreds from "../lib/checkPreds.js"
 import randomElement from "../lib/randomElement.js"
 import challengeMessage from "../lib/challengeMessage.js"
 import { MessageEmbed } from 'discord.js'
 import CurrencyManager from '../lib/currencyManager.js'
+import GameCommand from '../models/GameCommand.js'
 
-export default class Deathroll extends Command {
+export default class Deathroll extends GameCommand {
   constructor() {
     super({
       commandName: 'deathroll',
