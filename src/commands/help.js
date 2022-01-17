@@ -1,8 +1,9 @@
-import Command from "../models/Command.js";
+import Command from "../models/Command.js"
 import { MessageEmbed } from 'discord.js'
 import _ from 'lodash'
 import cmds from './cmds.js'
 import prefix from '../config/prefix.js'
+import DeprecatedCommand from "../models/DeprecatedCommand.js"
 
 export default class Help extends Command {
   constructor() {
@@ -15,6 +16,7 @@ export default class Help extends Command {
 
   async execute(msg, args) {   
     const helpEmbeds = _.chain(Array.from(cmds.values()))
+      .filter(command => !(command instanceof DeprecatedCommand))
       .groupBy('category')
       .map((categoryCmds, categoryName) => new MessageEmbed()
         .setTitle(`__${categoryName}__`)

@@ -1,11 +1,11 @@
-import Command from "../models/Command.js"
 import checkPreds from "../lib/checkPreds.js"
 import { HAS_MUSIC_MANAGER } from '../lib/discordPreds.js'
 import { getMusicManager } from "../jobs/musicManager.js"
 import Category from '../data/category.js'
 import { MessageEmbed } from "discord.js"
+import MusicCommand from "../models/MusicCommand.js"
 
-export default class CurrentlyPlaying extends Command {
+export default class CurrentlyPlaying extends MusicCommand {
   constructor() {
     super({
       commandName: '?',

@@ -1,4 +1,4 @@
-import database from "../config/database.js";
+import database from "../config/database.js"
 
 export default class DatabaseManager {
   constructor() {

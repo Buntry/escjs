@@ -1,5 +1,4 @@
 import _ from 'lodash'
-import Command from "../models/Command.js"
 import Category from '../data/category.js'
 import CurrencyManager from '../lib/currencyManager.js'
 import prefix from "../config/prefix.js"
@@ -7,8 +6,9 @@ import { MessageEmbed } from 'discord.js'
 import prkr from '../prkr.ml/client.js'
 import checkPreds from '../lib/checkPreds.js'
 import challengeMessage from "../lib/challengeMessage.js"
+import GameCommand from '../models/GameCommand.js'
 
-export default class Connect4 extends Command {
+export default class Connect4 extends GameCommand {
   constructor() {
     super({
       commandName: 'connect4',

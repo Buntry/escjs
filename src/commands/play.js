@@ -1,10 +1,10 @@
-import Command from "../models/Command.js"
 import checkPreds from "../lib/checkPreds.js"
 import { IN_GUILD_VC } from '../lib/discordPreds.js'
 import { getMusicManager } from "../jobs/musicManager.js"
 import Category from '../data/category.js'
+import MusicCommand from "../models/MusicCommand.js"
 
-export default class Play extends Command {
+export default class Play extends MusicCommand {
   constructor() {
     super({
       commandName: 'play',

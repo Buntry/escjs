@@ -1,7 +1,7 @@
 import _ from 'lodash'
-import client from '../../index.js';
+import client from '../../index.js'
 import sleep from "../lib/sleep.js"
-import GuildMemberUpdateHandler from "../models/handlers/GuildMemberUpdateHandler.js";
+import GuildMemberUpdateHandler from "../models/handlers/GuildMemberUpdateHandler.js"
 
 const desiredNicknames = {
   '359047531231051777': 'EscBot[DEV]',

@@ -15,7 +15,7 @@ export default class RandomSoundCommand extends Command {
     this.soundPath = soundPath
     this.zipPath = this.soundPath + fileName
     fs.createReadStream(this.zipPath)
-      .pipe(unzipper.Extract({ path: this.soundPath }));
+      .pipe(unzipper.Extract({ path: this.soundPath }))
   }
 
   async execute(msg) {

@@ -14,6 +14,6 @@ export default class Uptime extends Command {
   }
 
   async execute(msg) {
-    msg.channel.send(`I started ${this.createdAt.fromNow()}`)
+    msg?.channel?.send(`I started ${this.createdAt.fromNow()}`)
   }
 }

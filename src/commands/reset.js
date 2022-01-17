@@ -1,7 +1,7 @@
-import Command from "../models/Command.js";
-import admins from "../data/admins.js";
-import users from "../data/users.js";
-import servers from "../data/servers.js";
+import Command from "../models/Command.js"
+import admins from "../data/admins.js"
+import users from "../data/users.js"
+import servers from "../data/servers.js"
 
 const REASONING = 'Resetting nicknames server-wide'
 

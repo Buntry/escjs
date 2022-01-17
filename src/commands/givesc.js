@@ -1,9 +1,9 @@
 import _ from 'lodash'
-import Command from "../models/Command.js"
 import Category from '../data/category.js'
 import CurrencyManager from "../lib/currencyManager.js"
+import GameCommand from '../models/GameCommand.js'
 
-export default class GiveScredits extends Command {
+export default class GiveScredits extends GameCommand {
   constructor() {
     super({
       commandName: 'givesc',

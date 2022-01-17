@@ -1,4 +1,4 @@
-import VoiceStateUpdateHandler from "../models/handlers/VoiceStateUpdateHandler.js";
+import VoiceStateUpdateHandler from "../models/handlers/VoiceStateUpdateHandler.js"
 import sleep from '../lib/sleep.js'
 import dayjs from 'dayjs'
 
