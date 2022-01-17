@@ -12,7 +12,7 @@ class GameCommand extends DeprecatedCommand {
     category = Category.GAMES,
     hidden = false
   }) {
-    super(commandName, helpMessage, clearance, usage, argumentNames, category, hidden)
+    super({commandName, helpMessage, clearance, usage, argumentNames, category, hidden})
     this.commandName = commandName
   }
 }
