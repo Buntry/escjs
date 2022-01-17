@@ -1,4 +1,4 @@
-import Command from "../models/Command.js";
+import Command from "../models/Command.js"
 import getTrumpQuote from '../config/trump.js'
 
 export default class Trump extends Command {

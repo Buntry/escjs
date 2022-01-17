@@ -1,4 +1,4 @@
-import Command from "../models/Command.js";
+import Command from "../models/Command.js"
 
 export default class Pog extends Command {
   constructor() {

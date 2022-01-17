@@ -1,12 +1,12 @@
 import _ from 'lodash'
-import Command from "../models/Command.js"
 import MusicQuizManager from '../jobs/musicQuizManager.js'
 import checkPreds from '../lib/checkPreds.js'
 import { HAS_MUSIC_MANAGER } from '../lib/discordPreds.js'
 import { getMusicManager, mapMusicManager } from "../jobs/musicManager.js"
 import Category from '../data/category.js'
+import MusicCommand from '../models/MusicCommand.js'
 
-export default class StartMusicQuiz extends Command {
+export default class StartMusicQuiz extends MusicCommand {
   constructor() {
     super({
       commandName: 'start-quiz',
