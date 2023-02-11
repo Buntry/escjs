@@ -29,7 +29,7 @@
   "homepage": "https://github.com/Buntry/escjs#readme",
   "devDependencies": {
     "eslint": "^7.11.0",
-    "nodemon": "^2.0.6"
+    "nodemon": "^2.0.20"
   },
   "dependencies": {
     "@discordjs/opus": "^0.3.3",
